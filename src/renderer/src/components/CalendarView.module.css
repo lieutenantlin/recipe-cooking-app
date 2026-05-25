@@ -1,0 +1,288 @@
+.view {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 40px;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--text-tertiary);
+  font-style: italic;
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+.weekGrid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+@media (max-width: 880px) {
+  .weekGrid {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(140px, 1fr);
+    grid-template-columns: none;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+}
+
+.dayCol {
+  display: flex;
+  flex-direction: column;
+  min-height: 130px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  transition: border-color var(--t-fast);
+}
+
+.dayCol:hover {
+  border-color: var(--border-strong);
+}
+
+.dayColToday {
+  background: var(--bg-elevated);
+  border-color: var(--accent);
+  border-left: 3px solid var(--accent);
+}
+
+.dayHead {
+  margin-bottom: 8px;
+}
+
+.dayName {
+  color: var(--text-tertiary);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.dayColToday .dayName {
+  color: var(--accent);
+}
+
+.dayNumber {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.chipList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dayEmpty {
+  color: var(--text-tertiary);
+  font-size: 18px;
+  text-align: center;
+  padding: 8px 0;
+  opacity: 0.4;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(160, 152, 128, 0.12);
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+  max-width: 100%;
+}
+
+.chipName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.chipMeta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.chipSoft {
+  background: rgba(232, 101, 26, 0.1);
+  color: #d99066;
+}
+
+.chipExpiring {
+  background: rgba(232, 101, 26, 0.18);
+  color: var(--warning);
+}
+
+.chipDanger {
+  background: rgba(201, 64, 64, 0.18);
+  color: var(--danger);
+}
+
+.chipExpired {
+  background: rgba(201, 64, 64, 0.22);
+  color: var(--danger);
+  border-color: rgba(201, 64, 64, 0.3);
+}
+
+/* Urgent / Use These Up section */
+
+.urgentSection {
+  margin-top: 40px;
+}
+
+.urgentTitle {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.urgentEmpty {
+  padding: 32px 24px;
+  text-align: center;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 17px;
+}
+
+.urgentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.urgentCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--warning);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color var(--t-fast), transform var(--t-fast);
+}
+
+.urgentCard:hover {
+  border-color: var(--border-strong);
+  border-left-color: var(--warning);
+  transform: translateY(-1px);
+}
+
+.urgentCardHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.urgentCardTitle {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.urgentUses {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.urgentLabel {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+}
+
+.urgentChipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.urgentFooter {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.viewBtn {
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: color var(--t-fast), background var(--t-fast), border-color var(--t-fast);
+}
+
+.viewBtn:hover {
+  color: var(--accent-hover);
+  background: var(--bg-elevated);
+  border-color: var(--border);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 80px;
+  color: var(--text-tertiary);
+  font-style: italic;
+  font-family: var(--font-display);
+}
+
+.viewError {
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: rgba(201, 64, 64, 0.12);
+  border: 1px solid rgba(201, 64, 64, 0.4);
+  border-radius: var(--radius-md);
+  color: var(--danger);
+  font-size: 13.5px;
+}

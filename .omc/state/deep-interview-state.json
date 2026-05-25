@@ -1,0 +1,15 @@
+{
+  "active": true,
+  "current_phase": "deep-interview",
+  "state": {
+    "interview_id": "di-recipe-001",
+    "type": "greenfield",
+    "initial_idea": "App where you input fridge ingredients into a database, it generates a list of recipes you can cook with those ingredients, recipes are adjusted with currently stocked ingredients, and a weekly calendar shows when you should use ingredients by.",
+    "rounds": [],
+    "current_ambiguity": 1.0,
+    "threshold": 0.2,
+    "codebase_context": null,
+    "challenge_modes_used": [],
+    "ontology_snapshots": []
+  }
+}
