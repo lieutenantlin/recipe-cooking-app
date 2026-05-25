@@ -13,7 +13,7 @@ export default function Sidebar({ activeView, onNavigate }) {
       <div className={styles.brand}>
         <span className={styles.brandMark}>◐</span>
         <span className={styles.brandName}>
-          Fridge<span className={styles.brandAccent}>Chef</span>
+          <span className={styles.brandAccent}>G</span>lean
         </span>
       </div>
 

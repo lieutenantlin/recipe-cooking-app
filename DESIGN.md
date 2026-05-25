@@ -1,4 +1,4 @@
-# FridgeChef — Design Specification
+# Glean — Design Specification
 
 ## Concept
 
@@ -70,7 +70,7 @@ Three typefaces form the type system. Each has a distinct role and must not be u
 
 An optical-size variable serif with a distinctive personality. Used for:
 - All headings (h1–h4)
-- The app logo ("FridgeChef")
+- The app logo ("Glean")
 - Empty state messages
 - Modal titles and subtitles (italic variant)
 
