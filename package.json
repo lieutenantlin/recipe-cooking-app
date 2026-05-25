@@ -1,7 +1,7 @@
 {
-  "name": "recipe-cooking-app",
+  "name": "glean",
   "version": "0.1.0",
-  "description": "Fridge-to-recipe desktop app",
+  "description": "Glean — smart recipe management from your pantry",
   "main": "out/main/index.js",
   "scripts": {
     "dev": "electron-vite dev",
