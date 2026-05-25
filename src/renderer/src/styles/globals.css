@@ -1,4 +1,6 @@
 :root {
+  color-scheme: dark;
+
   /* Surfaces */
   --bg-base: #0d0c09;
   --bg-surface: #1a1917;
@@ -12,13 +14,31 @@
   /* Accent + semantic */
   --accent: #c97c2a;
   --accent-hover: #e08d35;
+  --accent-muted: rgba(201, 124, 42, 0.14);
+  --accent-muted-hover: rgba(201, 124, 42, 0.18);
+  --accent-wash: rgba(201, 124, 42, 0.06);
+  --text-on-accent: #1a1208;
+  --brand-glean: #e5b83a;
   --fresh: #7ab87a;
   --warning: #e8651a;
+  --warning-muted: rgba(232, 101, 26, 0.18);
+  --warning-soft: rgba(232, 101, 26, 0.1);
+  --warning-text: #d99066;
   --danger: #c94040;
+  --danger-muted: rgba(201, 64, 64, 0.12);
+  --danger-muted-strong: rgba(201, 64, 64, 0.18);
+  --danger-muted-stronger: rgba(201, 64, 64, 0.22);
+  --danger-wash: rgba(201, 64, 64, 0.08);
+  --danger-border: rgba(201, 64, 64, 0.4);
+  --danger-border-soft: rgba(201, 64, 64, 0.3);
 
   /* Borders */
   --border: #2e2c28;
   --border-strong: #3d3a34;
+  --neutral-muted: rgba(160, 152, 128, 0.12);
+  --overlay-backdrop: rgba(7, 6, 4, 0.7);
+  --dialog-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.6);
+  --selection-bg: rgba(201, 124, 42, 0.35);
 
   /* Fonts */
   --font-display: 'Fraunces', Georgia, serif;
@@ -45,6 +65,49 @@
   /* Transitions */
   --t-fast: 0.12s ease;
   --t-base: 0.18s ease;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  /* Surfaces */
+  --bg-base: #f7f1e8;
+  --bg-surface: #fffaf2;
+  --bg-elevated: #efe5d7;
+
+  /* Text */
+  --text-primary: #2c241c;
+  --text-secondary: #685949;
+  --text-tertiary: #958674;
+
+  /* Accent + semantic */
+  --accent: #a65f18;
+  --accent-hover: #87480e;
+  --accent-muted: rgba(166, 95, 24, 0.13);
+  --accent-muted-hover: rgba(166, 95, 24, 0.18);
+  --accent-wash: rgba(166, 95, 24, 0.08);
+  --text-on-accent: #fff8ee;
+  --brand-glean: #b8862d;
+  --fresh: #4f8f58;
+  --warning: #b84f16;
+  --warning-muted: rgba(184, 79, 22, 0.15);
+  --warning-soft: rgba(184, 79, 22, 0.09);
+  --warning-text: #9b4818;
+  --danger: #a93636;
+  --danger-muted: rgba(169, 54, 54, 0.11);
+  --danger-muted-strong: rgba(169, 54, 54, 0.14);
+  --danger-muted-stronger: rgba(169, 54, 54, 0.18);
+  --danger-wash: rgba(169, 54, 54, 0.08);
+  --danger-border: rgba(169, 54, 54, 0.34);
+  --danger-border-soft: rgba(169, 54, 54, 0.24);
+
+  /* Borders */
+  --border: #ded0bd;
+  --border-strong: #c9b69e;
+  --neutral-muted: rgba(104, 89, 73, 0.11);
+  --overlay-backdrop: rgba(44, 36, 28, 0.32);
+  --dialog-shadow: 0 24px 60px -24px rgba(64, 42, 22, 0.28);
+  --selection-bg: rgba(166, 95, 24, 0.25);
 }
 
 /* Reset */
@@ -166,7 +229,7 @@ textarea {
 
 /* Selection */
 ::selection {
-  background: rgba(201, 124, 42, 0.35);
+  background: var(--selection-bg);
   color: var(--text-primary);
 }
 

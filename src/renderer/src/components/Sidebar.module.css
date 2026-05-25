@@ -20,18 +20,18 @@
   font-weight: 600;
   font-size: 22px;
   letter-spacing: -0.01em;
-  color: var(--text-primary);
+  color: var(--brand-glean);
 }
 
 .brandAccent {
-  color: var(--accent);
+  color: var(--brand-glean);
 }
 
 .brandMark {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  color: var(--accent);
+  color: var(--brand-glean);
   font-size: 22px;
   margin-right: 2px;
 }
@@ -64,13 +64,13 @@
 }
 
 .navItemActive {
-  background: rgba(201, 124, 42, 0.14);
+  background: var(--accent-muted);
   color: var(--accent);
   font-weight: 600;
 }
 
 .navItemActive:hover {
-  background: rgba(201, 124, 42, 0.18);
+  background: var(--accent-muted-hover);
   color: var(--accent-hover);
 }
 
@@ -91,4 +91,31 @@
   font-size: 12px;
   letter-spacing: 0.04em;
   font-family: var(--font-mono);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.themeToggle {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  transition: color var(--t-fast), background var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
+}
+
+.themeToggle:hover {
+  color: var(--accent);
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.themeToggle:active {
+  transform: translateY(0);
 }

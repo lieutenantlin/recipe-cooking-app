@@ -56,12 +56,12 @@
 
 .modeBtnActive {
   background: var(--accent);
-  color: #1a1208;
+  color: var(--text-on-accent);
 }
 
 .modeBtnActive:hover {
   background: var(--accent-hover);
-  color: #1a1208;
+  color: var(--text-on-accent);
 }
 
 .grid {
@@ -287,8 +287,8 @@
 .viewError {
   margin-bottom: 16px;
   padding: 12px 16px;
-  background: rgba(201, 64, 64, 0.12);
-  border: 1px solid rgba(201, 64, 64, 0.4);
+  background: var(--danger-muted);
+  border: 1px solid var(--danger-border);
   border-radius: var(--radius-md);
   color: var(--danger);
   font-size: 13.5px;

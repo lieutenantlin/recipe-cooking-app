@@ -7,7 +7,9 @@ const NAV_ITEMS = [
   { key: 'calendar', label: 'Calendar', icon: CalendarIcon }
 ]
 
-export default function Sidebar({ activeView, onNavigate }) {
+export default function Sidebar({ activeView, theme, onNavigate, onToggleTheme }) {
+  const isLightTheme = theme === 'light'
+
   return (
     <aside className={styles.sidebar}>
       <div className={styles.brand}>
@@ -35,7 +37,19 @@ export default function Sidebar({ activeView, onNavigate }) {
         })}
       </nav>
 
-      <div className={styles.footer}>v0.1.0</div>
+      <div className={styles.footer}>
+        <span>v0.1.0</span>
+        <button
+          type="button"
+          className={styles.themeToggle}
+          onClick={onToggleTheme}
+          aria-pressed={isLightTheme}
+          aria-label={isLightTheme ? 'Switch to dark mode' : 'Switch to light mode'}
+          title={isLightTheme ? 'Dark mode' : 'Light mode'}
+        >
+          {isLightTheme ? <MoonIcon className={styles.icon} /> : <SunIcon className={styles.icon} />}
+        </button>
+      </div>
     </aside>
   )
 }
@@ -79,6 +93,30 @@ function CalendarIcon({ className }) {
       <path d="M3.5 10h17" />
       <path d="M8 3v4" />
       <path d="M16 3v4" />
+    </svg>
+  )
+}
+
+function SunIcon({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2.5v2" />
+      <path d="M12 19.5v2" />
+      <path d="m4.6 4.6 1.4 1.4" />
+      <path d="m18 18 1.4 1.4" />
+      <path d="M2.5 12h2" />
+      <path d="M19.5 12h2" />
+      <path d="m4.6 19.4 1.4-1.4" />
+      <path d="m18 6 1.4-1.4" />
+    </svg>
+  )
+}
+
+function MoonIcon({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20.5 14.5A8 8 0 0 1 9.5 3.5a7 7 0 1 0 11 11z" />
     </svg>
   )
 }
