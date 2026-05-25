@@ -10,6 +10,7 @@ Glean is an Electron desktop app that helps you track pantry ingredients, manage
 - **Recipes** — Store your favorite recipes with full ingredient lists and instructions. Two-panel layout for browsing and editing.
 - **Suggestions** — Cross-reference your pantry against your recipes. Three match modes: **Strict** (only if you have everything), **Partial** (match score), and **Substitution** (suggests ingredient swaps from a built-in substitution map).
 - **Calendar** — 7-day expiry view showing what's about to expire and which recipes can use those ingredients.
+- **Theme toggle** — Switch between dark and light mode from the sidebar footer. The app follows the OS theme until a manual choice is made, then saves that choice locally.
 
 ## Architecture
 
@@ -24,8 +25,8 @@ src/
 └── renderer/
     └── src/
         ├── main.jsx           — React entry
-        ├── App.jsx            — View routing via state
-        ├── styles/globals.css — Design tokens (Warm Dark Kitchen theme)
+        ├── App.jsx            — View routing + theme state
+        ├── styles/globals.css — Design tokens (dark/light themes)
         └── components/
             ├── Sidebar.jsx           — Navigation
             ├── PantryView.jsx        — Ingredient CRUD
@@ -77,6 +78,10 @@ npm run start      # Start Electron
 npm run rebuild    # Rebuild native modules
 ```
 
+## Theme
+
+Glean ships with warm dark and light themes. On first launch, it follows `prefers-color-scheme`; once the sidebar footer toggle is used, the selected `light` or `dark` value is stored in localStorage as `glean:theme`. Theme colors are applied through `data-theme` on the document root and CSS custom properties in `src/renderer/src/styles/globals.css`.
+
 ## Design
 
-Warm Dark Kitchen theme — a dark, warm editorial aesthetic inspired by cast iron, aged wood, and spices. Uses Fraunces (display), Source Sans 3 (body), JetBrains Mono (data). Custom properties throughout, 8-point spacing grid. See `DESIGN.md` for the full spec.
+Warm Kitchen theme — a warm editorial aesthetic inspired by cast iron, aged wood, cream paper, and spices. Uses Fraunces (display), Source Sans 3 (body), JetBrains Mono (data). Custom properties throughout, 8-point spacing grid. See `DESIGN.md` for the full spec.

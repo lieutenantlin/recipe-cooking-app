@@ -2,13 +2,13 @@
 
 ## Concept
 
-**"Warm Dark Kitchen"** — a premium kitchen organizer that feels like a well-lit, well-organized pantry at night. The aesthetic draws from cast iron, aged wood, warm spice, and the editorial quality of a good food magazine. Dark and calm, never cold.
+**"Warm Kitchen"** — a premium kitchen organizer that feels like a well-lit, well-organized pantry. The default dark theme draws from cast iron, aged wood, warm spice, and the editorial quality of a good food magazine. The light theme keeps the same warmth with cream paper surfaces and grounded brown text.
 
 ---
 
 ## Color Palette
 
-All colors are defined as CSS custom properties in `src/renderer/src/styles/globals.css`.
+All colors are defined as CSS custom properties in `src/renderer/src/styles/globals.css`. `:root` contains the dark defaults, and `:root[data-theme='light']` overrides the same tokens for light mode. Components must consume tokens rather than hard-coded theme colors.
 
 ### Surfaces
 
@@ -18,7 +18,7 @@ All colors are defined as CSS custom properties in `src/renderer/src/styles/glob
 | `--bg-surface` | `#1a1917` | Cards, sidebar, panels |
 | `--bg-elevated` | `#242220` | Inputs (focused), tooltips, hover states |
 
-The three surface levels create depth without harsh contrast. Each step adds approximately 7–8 luminance points.
+The three surface levels create depth without harsh contrast. In light mode, these same tokens map to warm cream and parchment surfaces.
 
 ### Text
 
@@ -28,7 +28,7 @@ The three surface levels create depth without harsh contrast. Each step adds app
 | `--text-secondary` | `#a09880` | Metadata, labels, supporting text |
 | `--text-tertiary` | `#6b6355` | Placeholders, timestamps, version string |
 
-Text is warm cream rather than pure white — this prevents harshness against the warm dark backgrounds.
+Dark-mode text is warm cream rather than pure white; light-mode text is warm brown rather than black. Both prevent harsh contrast while preserving readability.
 
 ### Accent
 
@@ -36,6 +36,10 @@ Text is warm cream rather than pure white — this prevents harshness against th
 |---|---|---|
 | `--accent` | `#c97c2a` | Primary buttons, active nav, focus rings, highlights |
 | `--accent-hover` | `#e08d35` | Hover state for accent elements |
+| `--text-on-accent` | `#1a1208` | Text/icons on filled accent controls |
+| `--accent-muted` | `rgba(201, 124, 42, 0.14)` | Active nav background |
+| `--accent-muted-hover` | `rgba(201, 124, 42, 0.18)` | Active nav hover background |
+| `--accent-wash` | `rgba(201, 124, 42, 0.06)` | Subtle accent hover washes |
 
 The amber/spice accent is the single dominant color in the UI. Use it sparingly — reserved for the one thing the user should look at or act on.
 
@@ -46,6 +50,9 @@ The amber/spice accent is the single dominant color in the UI. Use it sparingly 
 | `--fresh` | `#7ab87a` | Ingredient is fresh (expires > 7 days) |
 | `--warning` | `#e8651a` | Expires within 7 days / partial match |
 | `--danger` | `#c94040` | Expired / missing ingredient / error |
+| `--danger-muted` | `rgba(201, 64, 64, 0.12)` | Error banner background |
+| `--danger-border` | `rgba(201, 64, 64, 0.4)` | Error banner border |
+| `--warning-muted` | `rgba(232, 101, 26, 0.18)` | Warning chip background |
 
 These colors must only appear in their defined semantic context. Never use `--fresh` for decorative purposes.
 
@@ -55,6 +62,14 @@ These colors must only appear in their defined semantic context. Never use `--fr
 |---|---|---|
 | `--border` | `#2e2c28` | Default dividers, card outlines |
 | `--border-strong` | `#3d3a34` | Hovered cards, modal outlines, emphasis |
+
+Additional utility tokens include `--neutral-muted`, `--overlay-backdrop`, `--dialog-shadow`, and `--selection-bg`. They exist so overlays, chips, shadows, and selection styling stay theme-aware.
+
+### Theme Behavior
+
+The renderer stores the selected theme in localStorage under `glean:theme`, with valid values `light` and `dark`. If no saved value exists, the app initializes from `prefers-color-scheme` and follows OS theme changes. Once the sidebar toggle is used, the manual choice is saved and takes precedence until localStorage is cleared.
+
+The active theme is applied by setting `data-theme` on the document root. Both themes also set `color-scheme` so native controls render with matching browser defaults.
 
 ---
 
@@ -186,8 +201,8 @@ Two-column fixed layout: 220px sidebar + flex-1 main content. Both panels are fu
 - Right border: `1px solid var(--border)`
 - Logo area: 22px Fraunces, 28px bottom padding
 - Nav items: 10px/14px padding, `--radius-md`, 2px gap between items
-- Active item: `rgba(201, 124, 42, 0.14)` background, `--accent` text, 600 weight
-- Footer: `--font-mono`, 12px, `--text-tertiary`
+- Active item: `--accent-muted` background, `--accent` text, 600 weight
+- Footer: `--font-mono`, 12px, `--text-tertiary`, with a 32px icon button for the light/dark toggle
 
 ### View Headers
 
@@ -210,9 +225,9 @@ Cards are the primary content unit across Pantry, Suggestions, and Calendar view
 
 ### Modals
 
-- Backdrop: `rgba(7, 6, 4, 0.7)` + `backdrop-filter: blur(4px)`
+- Backdrop: `--overlay-backdrop` + `backdrop-filter: blur(4px)`
 - Modal panel: `--bg-surface`, `--border-strong`, `--radius-lg`, max-width 460px
-- Shadow: `0 24px 60px -20px rgba(0, 0, 0, 0.6)`
+- Shadow: `--dialog-shadow`
 - Entrance animation: `scaleIn` (see Motion section)
 - Close on: Escape key, click outside backdrop
 
@@ -224,7 +239,7 @@ Cards are the primary content unit across Pantry, Suggestions, and Calendar view
 
 ```css
 background: var(--accent);
-color: #1a1208;           /* dark warm, not pure black */
+color: var(--text-on-accent);
 font-weight: 600;
 padding: 10px 18px;
 border-radius: var(--radius-md);
@@ -266,8 +281,8 @@ On focus: `border-color → --accent`, `background → --bg-elevated`. No defaul
 ### Error Banners
 
 ```css
-background: rgba(201, 64, 64, 0.12);
-border: 1px solid rgba(201, 64, 64, 0.4);
+background: var(--danger-muted);
+border: 1px solid var(--danger-border);
 color: var(--danger);
 border-radius: var(--radius-sm);  /* inline form errors */
 border-radius: var(--radius-md);  /* view-level errors */
@@ -317,7 +332,7 @@ border-radius: var(--radius-sm);
 
 Applied to all interactive elements via keyboard navigation. Mouse clicks do not trigger the ring.
 
-Text selection uses `rgba(201, 124, 42, 0.35)` background — a semi-transparent amber tint matching the accent.
+Text selection uses `--selection-bg` — a semi-transparent amber tint matching the accent in each theme.
 
 ---
 
